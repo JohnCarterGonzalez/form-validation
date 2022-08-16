@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import Form from './components/ValidationForm'
+import  Container  from 'react-bootstrap/Container';
+
+const initialState = {
+    firstName: {
+        value: '',
+        error: null
+    },
+    lastName: {
+        value: '',
+        error: null
+    },
+    email: {
+        value: '',
+        error: null
+    },
+  submitted:false
+};
 
 function App() {
+  const [state, setState] = useState(initialState)
+  const [error, setError] = useState(false)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Container className="p-3">
+        <Form state={ state } setState = { setState } error = { error } setError = { setError } />
+      </Container>
+    </div>      
   );
 }
 
